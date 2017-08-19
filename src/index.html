@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <title>crosspic</title>
+  <base href="/">
+  <meta http-equiv="content-type" content="text/html;text/x-component;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+  <meta name="Keywords" content="">
+  <meta name="description" content="">
+  <meta name="robots" content="index, follow"/>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <script type="text/javascript">
+    function b() {
+      var c = navigator.userAgent.toLowerCase(), e, d, a, f;
+      "ActiveXObject" in self ? (f = (a = c.match(/msie ([\d.]+)/)) ? a[1] : (a = c.match(/rv:([\d.]+)/)) ? a[1] : 0, e = { "trident/7.0": 11, "trident/6.0": 10, "trident/5.0": 9, "trident/4.0": 8 },
+        d = (a = c.match(/(trident\/[\d.]+|edge\/[\d.]+)/)) ? a[1] : void 0, c = 0 < (e[d] || f) ? "ie" : void 0) : c = (a = c.match(/edge\/([\d.]+)/)) ? "ie" : (a = c.match(/firefox\/([\d.]+)/)) ? "firefox" : (a = c.match(/chrome\/([\d.]+)/)) ? "chrome" : (a = c.match(/opera.([\d.]+)/)) ? "opera" : (a = c.match(/version\/([\d.]+).*safari/)) ? "safari" : void 0;
+      "ie" === c && 11 > parseInt(d && e[d] ? e[d] : a[1]) && (window.location.href = "/assets/update/update.html");
+      console.log(c, d && e[d] ? e[d] : a[1]);
+    }
+  </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" onload="b()">
+  <app-root></app-root>
+</body>
+</html>
