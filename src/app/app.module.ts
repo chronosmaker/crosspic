@@ -9,6 +9,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {DrawerComponent} from './components/drawer/drawer.component';
 import {HomeComponent} from './pages/home/home.component';
+import {SystemService} from "./shared/system.service";
 
 @NgModule({
   declarations: [
@@ -25,8 +26,7 @@ import {HomeComponent} from './pages/home/home.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [SystemService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

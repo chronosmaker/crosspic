@@ -1,3 +1,8 @@
-<p>
-  home works!
-</p>
+<div class="mission-data-wrap">
+  <ul class="data-block-wrap cf">
+    <li *ngFor="let data of missionData.data">
+      <div class="data-block" [style.background-color]="data.color"></div>
+    </li>
+  </ul>
+
+</div>
