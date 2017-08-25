@@ -6,15 +6,31 @@
   padding: 20px;
   max-width: @containerWidth;
 }
-.data-block-wrap {
-  position: relative;
-  margin: 0 auto;
-  width: 250px;
+
+.hint-col-wrap {
+  float: left;
   li {
-    float: left;
-    .data-block {
-      width: 50px;
-      height: 50px;
-    }
+    display: table-cell;
+    vertical-align: bottom;
   }
+  .hint-block {
+  }
+}
+
+.hint-row-wrap {
+  float: left;
+  li {
+    text-align: right;
+  }
+  .hint-block {
+    display: inline-block;
+  }
+}
+
+.data-block-wrap {
+}
+
+.data-block, .hint-block {
+  width: 50px;
+  height: 50px;
 }

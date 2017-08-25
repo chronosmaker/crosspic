@@ -10,43 +10,62 @@ export class HomeComponent implements OnInit {
   constructor() {
   }
 
-  // hor: [[1,3], [2,1], [5], [2], [3]]
-  // ver: [[3],[2], [1,3], [5], [1,1,1]]
-  countData = {
-    hor: [],
-    ver: []
-  };
+  hintData = {row: [], col: []};
 
   missionData = {
     option: {
-      count: 5
+      row: 5,
+      col: 5
     },
     data: [
-      {fill: true, color: 'black'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'},
-      {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: false, color: 'white'},
-      {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'},
-      {fill: false, color: 'white'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: false, color: 'white'},
-      {fill: false, color: 'white'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'},
+      [{fill: true, color: 'black'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}],
+      [{fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: false, color: 'white'}],
+      [{fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}],
+      [{fill: false, color: 'white'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: false, color: 'white'}],
+      [{fill: false, color: 'white'}, {fill: false, color: 'white'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}, {fill: true, color: 'black'}]
     ]
   };
 
   ngOnInit() {
-    let tempHor = {
-      last: false,
-      count: 0
-    };
-    this.missionData.data.forEach((val, index) => {
-      tempHor.last = val.fill;
-      if (val.fill) {
-        tempHor.count++;
-      } else {
-        this.countData.hor.push(tempHor.count);
-        tempHor.count = 0;
-      }
-      if ((index + 1) % this.missionData.option.count) {
-
-      }
-    });
+    this.hintData = this.initHintData();
   }
 
+  initHintData() {
+    let hintData = {row: [], col: []};
+    for (let i = 0; i < this.missionData.option.row; i++) {
+      hintData.row[i] = [];
+      let temp = 0;
+      for (let j = 0; j < this.missionData.option.col; j++) {
+        if (this.missionData.data[i][j].fill) {
+          temp++;
+        } else {
+          if (temp !== 0) {
+            hintData.row[i].push(temp);
+            temp = 0;
+          }
+        }
+      }
+      if (temp !== 0) {
+        hintData.row[i].push(temp);
+      }
+    }
+    for (let i = 0; i < this.missionData.option.col; i++) {
+      hintData.col[i] = [];
+      let temp = 0;
+      for (let j = 0; j < this.missionData.option.row; j++) {
+        if (this.missionData.data[j][i].fill) {
+          temp++;
+        } else {
+          if (temp !== 0) {
+            hintData.col[i].push(temp);
+            temp = 0;
+          }
+        }
+      }
+      if (temp !== 0) {
+        hintData.col[i].push(temp);
+      }
+    }
+    return hintData;
+  }
 }
