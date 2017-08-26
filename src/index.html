@@ -17,6 +17,7 @@
       "ActiveXObject" in self ? (f = (a = c.match(/msie ([\d.]+)/)) ? a[1] : (a = c.match(/rv:([\d.]+)/)) ? a[1] : 0, e = { "trident/7.0": 11, "trident/6.0": 10, "trident/5.0": 9, "trident/4.0": 8 },
         d = (a = c.match(/(trident\/[\d.]+|edge\/[\d.]+)/)) ? a[1] : void 0, c = 0 < (e[d] || f) ? "ie" : void 0) : c = (a = c.match(/edge\/([\d.]+)/)) ? "ie" : (a = c.match(/firefox\/([\d.]+)/)) ? "firefox" : (a = c.match(/chrome\/([\d.]+)/)) ? "chrome" : (a = c.match(/opera.([\d.]+)/)) ? "opera" : (a = c.match(/version\/([\d.]+).*safari/)) ? "safari" : void 0;
       "ie" === c && 11 > parseInt(d && e[d] ? e[d] : a[1]) && (window.location.href = "/");
+      document.oncontextmenu=function(e){e.preventDefault()};
       console.log(c, d && e[d] ? e[d] : a[1]);
     }
   </script>

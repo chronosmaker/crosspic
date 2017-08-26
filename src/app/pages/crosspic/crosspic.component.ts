@@ -14,43 +14,44 @@ export class CrosspicComponent implements OnInit {
     option: {
       size: 50,
       row: 5,
-      col: 5
+      col: 5,
+      life: 5
     },
     data: [
       [
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'}
+        {fill: true, color: 'black', status: 1},
+        {fill: false, color: 'white', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1}
       ],
       [
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'}
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: false, color: 'white', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: false, color: 'white', status: 1}
       ],
       [
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'}
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1}
       ],
       [
-        {fill: false, color: 'white'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'}
+        {fill: false, color: 'white', status: 1},
+        {fill: false, color: 'white', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: false, color: 'white', status: 1}
       ],
       [
-        {fill: false, color: 'white'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'}
+        {fill: false, color: 'white', status: 1},
+        {fill: false, color: 'white', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1},
+        {fill: true, color: 'black', status: 1}
       ]
     ]
   };
@@ -60,12 +61,13 @@ export class CrosspicComponent implements OnInit {
 
   ngOnInit() {
     this.systemService.headerBtns.next(Object.assign([], [{
-      text: 'new', callback: () => {
-        console.log(this.hintData);
+      text: 'mission', callback: () => {
       }
     }, {
       text: 'clear', callback: () => {
-        console.log(this.hintData);
+      }
+    }, {
+      text: 'editor', callback: () => {
       }
     }]));
     this.hintData = this.initHintData();
@@ -108,6 +110,19 @@ export class CrosspicComponent implements OnInit {
       }
     }
     return hintData;
+  }
+
+  changeStatus(td, e) {
+    if (e.button === 0 && !td.fill) {
+      if (td.status !== 4) {
+        td.status = 4;
+        this.missionData.option.life--;
+      }
+    } else {
+      if (td.status !== 4) {
+        td.status = e.button;
+      }
+    }
   }
 
 }
