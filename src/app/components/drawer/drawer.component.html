@@ -1,7 +1,5 @@
-<span class="mdl-layout-title">{{drawerInfo.title}}</span>
+<span class="mdl-layout-title">{{drawerInfo.site}}</span>
 <nav class="mdl-navigation">
-  <a class="mdl-navigation__link" href="">Link</a>
-  <a class="mdl-navigation__link" href="">Link</a>
-  <a class="mdl-navigation__link" href="">Link</a>
-  <a class="mdl-navigation__link" href="">Link</a>
+  <a class="mdl-navigation__link" *ngFor="let menu of getKeys(drawerInfo.menu)"
+     [routerLink]="[drawerInfo.menu[menu].url]">{{drawerInfo.menu[menu].title}}</a>
 </nav>

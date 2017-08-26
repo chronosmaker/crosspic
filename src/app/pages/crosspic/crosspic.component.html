@@ -1,0 +1,48 @@
+<table class="mission-data-wrap">
+  <tr>
+    <td>
+      <table>
+        <tr *ngFor="let tr of missionData.data">
+          <td *ngFor="let td of tr">
+            <div class="data-block" [style.background-color]="td.color"
+                 [style.width.px]="missionData.option.size/5"
+                 [style.height.px]="missionData.option.size/5"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <ul class="hint-col-wrap cf">
+        <li *ngFor="let col of hintData.col">
+          <div class="hint-block" *ngFor="let hint of col"
+               [style.width.px]="missionData.option.size"
+               [style.height.px]="missionData.option.size"
+               [style.line-height.px]="missionData.option.size">{{hint}}</div>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="hint-row-wrap">
+        <li class="cf" *ngFor="let row of hintData.row">
+          <div class="hint-block" *ngFor="let hint of row"
+               [style.width.px]="missionData.option.size"
+               [style.height.px]="missionData.option.size"
+               [style.line-height.px]="missionData.option.size">{{hint}}</div>
+        </li>
+      </ul>
+    </td>
+    <td>
+      <table class="data-block-wrap">
+        <tr *ngFor="let tr of missionData.data">
+          <td *ngFor="let td of tr">
+            <div class="data-block" [style.background-color]="td.color"
+                 [style.width.px]="missionData.option.size"
+                 [style.height.px]="missionData.option.size"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

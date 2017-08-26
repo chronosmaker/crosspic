@@ -8,12 +8,10 @@ import {SystemService} from "../../shared/system.service";
 })
 export class FooterComponent implements OnInit {
 
+  footerInfo = this.systemService.systemInfo;
+
   constructor(private systemService: SystemService) {
   }
-
-  footerInfo = {
-    title: this.systemService.systemInfo.title
-  };
 
   ngOnInit() {
   }

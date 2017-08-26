@@ -2,13 +2,19 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class SystemService {
 
   systemInfo = {
-    title: '{crosspic}'
+    site: 'chronos.red',
+    menu: {
+      home: {title: 'home', url: '/home'},
+      crosspic: {title: '{crosspic}', url: '/crosspic'}
+    }
   };
+  headerBtns: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
   constructor(private http: HttpClient) {
   }

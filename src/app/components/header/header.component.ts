@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SystemService} from "../../shared/system.service";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,17 @@ import {SystemService} from "../../shared/system.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private systemService: SystemService) {
-  }
+  headerInfo = this.systemService.systemInfo;
+  currentUrl = '';
+  headerBtns = [];
 
-  headerInfo = {
-    title: this.systemService.systemInfo.title
-  };
+  constructor(private systemService: SystemService, private router: Router) {
+    this.router.events.filter(event => event instanceof NavigationEnd)
+      .subscribe(event => {
+        this.currentUrl = event['urlAfterRedirects'].split('/')[1];
+      });
+    this.systemService.headerBtns.subscribe(res => this.headerBtns = res);
+  }
 
   ngOnInit() {
   }

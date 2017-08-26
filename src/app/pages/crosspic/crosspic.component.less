@@ -1,0 +1,39 @@
+@import "../../../values";
+
+.mission-data-wrap {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: @containerWidth;
+}
+
+.hint-col-wrap {
+  float: left;
+  li {
+    display: table-cell;
+    vertical-align: bottom;
+    border: 1px solid @dividerColor;
+  }
+}
+
+.hint-row-wrap {
+  float: left;
+  li {
+    text-align: right;
+    border: 1px solid @dividerColor;
+  }
+  .hint-block {
+    display: inline-block;
+  }
+}
+
+.data-block-wrap {
+  border: 2px solid @secondaryTextColor;
+  td {
+    border: 1px solid @dividerColor;
+  }
+}
+
+.hint-block {
+  text-align: center;
+}

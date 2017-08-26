@@ -10,6 +10,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {DrawerComponent} from './components/drawer/drawer.component';
 import {HomeComponent} from './pages/home/home.component';
 import {SystemService} from "./shared/system.service";
+import { CrosspicComponent } from './pages/crosspic/crosspic.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {SystemService} from "./shared/system.service";
     HeaderComponent,
     FooterComponent,
     DrawerComponent,
-    HomeComponent
+    HomeComponent,
+    CrosspicComponent
   ],
   imports: [
     BrowserModule,

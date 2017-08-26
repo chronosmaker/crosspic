@@ -8,14 +8,16 @@ import {SystemService} from "../../shared/system.service";
 })
 export class DrawerComponent implements OnInit {
 
+  drawerInfo = this.systemService.systemInfo;
+
   constructor(private systemService: SystemService) {
   }
 
-  drawerInfo = {
-    title: this.systemService.systemInfo.title
-  };
-
   ngOnInit() {
+  }
+
+  getKeys(obj){
+    return Object.keys(obj);
   }
 
 }
