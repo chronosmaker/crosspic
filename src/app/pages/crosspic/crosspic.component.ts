@@ -70,16 +70,16 @@ export class CrosspicComponent implements OnInit {
       text: 'editor', callback: () => {
       }
     }]));
-    this.hintData = this.initHintData();
+    this.hintData = this.initHintData(this.missionData);
   }
 
-  initHintData() {
+  initHintData(missionData) {
     let hintData = {row: [], col: []};
-    for (let i = 0; i < this.missionData.option.row; i++) {
+    for (let i = 0; i < missionData.option.row; i++) {
       hintData.row[i] = [];
       let temp = 0;
-      for (let j = 0; j < this.missionData.option.col; j++) {
-        if (this.missionData.data[i][j].fill) {
+      for (let j = 0; j < missionData.option.col; j++) {
+        if (missionData.data[i][j].fill) {
           temp++;
         } else {
           if (temp !== 0) {
@@ -92,11 +92,11 @@ export class CrosspicComponent implements OnInit {
         hintData.row[i].push(temp);
       }
     }
-    for (let i = 0; i < this.missionData.option.col; i++) {
+    for (let i = 0; i < missionData.option.col; i++) {
       hintData.col[i] = [];
       let temp = 0;
-      for (let j = 0; j < this.missionData.option.row; j++) {
-        if (this.missionData.data[j][i].fill) {
+      for (let j = 0; j < missionData.option.row; j++) {
+        if (missionData.data[j][i].fill) {
           temp++;
         } else {
           if (temp !== 0) {
@@ -113,15 +113,11 @@ export class CrosspicComponent implements OnInit {
   }
 
   changeStatus(td, e) {
-    if (e.button === 0 && !td.fill) {
-      if (td.status !== 4) {
-        td.status = 4;
-        this.missionData.option.life--;
-      }
-    } else {
-      if (td.status !== 4) {
-        td.status = e.button;
-      }
+    if (e.button === 0 && !td.fill && td.status !== 4) {
+      td.status = 4;
+      this.missionData.option.life--;
+    } else if (td.status !== 0 && td.status !== 4) {
+      td.status = e.button;
     }
   }
 
