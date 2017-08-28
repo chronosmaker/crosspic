@@ -9,49 +9,51 @@ import {SystemService} from "../../shared/system.service";
 export class CrosspicComponent implements OnInit {
 
   hintData = {row: [], col: []};
+  hoverCount = {row: null, col: null};
 
   missionData = {
     option: {
       size: 50,
       row: 5,
       col: 5,
-      life: 5
+      life: 5,
+      hard: false
     },
     data: [
       [
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'}
+        {fill: 1, color: 'black'},
+        {fill: 0, color: 'white'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'}
       ],
       [
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'}
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 0, color: 'white'},
+        {fill: 1, color: 'black'},
+        {fill: 0, color: 'white'}
       ],
       [
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'}
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'}
       ],
       [
-        {fill: false, color: 'white'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: false, color: 'white'}
+        {fill: 0, color: 'white'},
+        {fill: 0, color: 'white'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 0, color: 'white'}
       ],
       [
-        {fill: false, color: 'white'},
-        {fill: false, color: 'white'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'},
-        {fill: true, color: 'black'}
+        {fill: 0, color: 'white'},
+        {fill: 0, color: 'white'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'},
+        {fill: 1, color: 'black'}
       ]
     ]
   };
@@ -68,6 +70,16 @@ export class CrosspicComponent implements OnInit {
 
   ngOnInit() {
     this.hintData = this.initHintData(this.missionData);
+  }
+
+  mouseHover(enter, row?, col?) {
+    if (enter) {
+      this.hoverCount.row = row;
+      this.hoverCount.col = col;
+    } else {
+      this.hoverCount.row = null;
+      this.hoverCount.col = null;
+    }
   }
 
   initHintData(missionData) {
@@ -109,12 +121,47 @@ export class CrosspicComponent implements OnInit {
     return hintData;
   }
 
+  resetStatus(missionData) {
+    for (let i = 0; i < missionData.option.row; i++) {
+      for (let j = 0; j < missionData.option.col; j++) {
+        missionData.data[i][j].status = null;
+      }
+    }
+  }
+
+  checkStatus(missionData) {
+    missionData.option.win = true;
+    for (let i = 0; i < missionData.option.row; i++) {
+      for (let j = 0; j < missionData.option.col; j++) {
+        if (missionData.data[i][j].fill) {
+          if (missionData.data[i][j].status !== 0) {
+            missionData.option.win = false;
+          }
+        } else {
+          if (missionData.data[i][j].status === 0) {
+            missionData.option.win = false;
+          }
+        }
+      }
+    }
+    return missionData.option.win;
+  }
+
   changeStatus(td, e) {
-    if (e.button === 0 && !td.fill && td.status !== 4) {
-      td.status = 4;
-      this.missionData.option.life--;
-    } else if (td.status !== 0 && td.status !== 4) {
+    if (this.missionData.option.hard) {
       td.status = e.button;
+    } else {
+      if (e.button === 0 && !td.fill && td.status !== 4) {
+        td.status = 4;
+        if (this.missionData.option.life-- === 1) {
+          alert('Game Over...');
+        }
+      } else if (td.status !== 0 && td.status !== 4) {
+        td.status = e.button;
+      }
+    }
+    if (this.missionData.option.life > 0 && this.checkStatus(this.missionData)) {
+      alert('Win!!!');
     }
   }
 
