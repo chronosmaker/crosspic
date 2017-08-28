@@ -19,57 +19,54 @@ export class CrosspicComponent implements OnInit {
     },
     data: [
       [
-        {fill: true, color: 'black', status: 1},
-        {fill: false, color: 'white', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1}
+        {fill: true, color: 'black'},
+        {fill: false, color: 'white'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'}
       ],
       [
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: false, color: 'white', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: false, color: 'white', status: 1}
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: false, color: 'white'},
+        {fill: true, color: 'black'},
+        {fill: false, color: 'white'}
       ],
       [
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1}
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'}
       ],
       [
-        {fill: false, color: 'white', status: 1},
-        {fill: false, color: 'white', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: false, color: 'white', status: 1}
+        {fill: false, color: 'white'},
+        {fill: false, color: 'white'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: false, color: 'white'}
       ],
       [
-        {fill: false, color: 'white', status: 1},
-        {fill: false, color: 'white', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1},
-        {fill: true, color: 'black', status: 1}
+        {fill: false, color: 'white'},
+        {fill: false, color: 'white'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'},
+        {fill: true, color: 'black'}
       ]
     ]
   };
 
   constructor(private systemService: SystemService) {
-  }
-
-  ngOnInit() {
     this.systemService.headerBtns.next(Object.assign([], [{
       text: 'mission', callback: () => {
-      }
-    }, {
-      text: 'clear', callback: () => {
       }
     }, {
       text: 'editor', callback: () => {
       }
     }]));
+  }
+
+  ngOnInit() {
     this.hintData = this.initHintData(this.missionData);
   }
 
