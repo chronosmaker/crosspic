@@ -1,0 +1,99 @@
+@import "../../../../values";
+
+.mdl-card {
+  float: left;
+  margin: 50px;
+  width: auto;
+}
+
+.mission-data-wrap {
+  margin: 50px;
+}
+
+.mission-result {
+  margin: 16px;
+}
+
+.hint-col-wrap {
+  li {
+    display: table-cell;
+    vertical-align: bottom;
+    border-right: 1px solid @dividerColor;
+    &:first-child {
+      border-left: 2px solid @dividerColor;
+    }
+    &:last-child {
+      border-right-width: 2px;
+    }
+    &:nth-child(5n) {
+    }
+  }
+  .hint-block {
+    line-height: 2em;
+  }
+}
+
+.hint-row-wrap {
+  li {
+    text-align: right;
+    border-bottom: 1px solid @dividerColor;
+    &:first-child {
+      border-top: 2px solid @dividerColor;
+    }
+    &:last-child {
+      border-bottom-width: 2px;
+    }
+    &:nth-child(5n) {
+    }
+  }
+  .hint-block {
+    display: inline-block;
+    width: 2em;
+  }
+}
+
+.data-block-wrap {
+  border: 2px solid @secondaryTextColor;
+  td {
+    border: 1px solid @dividerColor;
+  }
+}
+
+.hint-block {
+  text-align: center;
+}
+
+.data-block {
+  .material-icons {
+    width: 100%;
+    text-align: center;
+    color: @dividerColor;
+    cursor: default;
+    &.error {
+      color: @darkPrimaryColor;
+    }
+  }
+}
+
+.block-hover {
+  background-color: @bodyColor;
+}
+
+.block-transition-100ms {
+  .transition(100ms);
+}
+
+.block-transition-300ms {
+  .transition(300ms);
+}
+
+.life-count {
+  float: right;
+  margin: 10px 10px 0 0;
+  li {
+    float: left;
+    i {
+      color: @darkPrimaryColor;
+    }
+  }
+}

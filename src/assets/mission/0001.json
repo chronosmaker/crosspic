@@ -1,0 +1,48 @@
+{
+  "id": "0001",
+  "title": "dragon",
+  "option": {
+    "size": 50,
+    "row": 5,
+    "col": 5,
+    "life": 5,
+    "hard": false
+  },
+  "data": [
+    [
+      {"fill": 1, "color": "black"},
+      {"fill": 0, "color": "white"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"}
+    ],
+    [
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 0, "color": "white"},
+      {"fill": 1, "color": "black"},
+      {"fill": 0, "color": "white"}
+    ],
+    [
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"}
+    ],
+    [
+      {"fill": 0, "color": "white"},
+      {"fill": 0, "color": "white"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 0, "color": "white"}
+    ],
+    [
+      {"fill": 0, "color": "white"},
+      {"fill": 0, "color": "white"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"},
+      {"fill": 1, "color": "black"}
+    ]
+  ]
+}

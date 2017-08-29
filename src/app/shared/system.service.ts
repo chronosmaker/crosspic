@@ -19,12 +19,15 @@ export class SystemService {
   constructor(private http: HttpClient) {
   }
 
-  // private handleError(error: any) {
-  //   console.error('error catched', error);
-  //   return Observable.of({description: 'Error Value Emitted'});
-  // }
+  private handleError(error: any) {
+    console.error('error catched', error);
+    return Observable.of({description: 'Error Value Emitted'});
+  }
 
-  // post(data): Observable<any> {
-  //   return this.http.post('/', JSON.stringify(data)).map((res: any) => res).catch(error => this.handleError(error));
-  // }
+  getMissionList(): Observable<any> {
+    return this.http.get('/assets/mission/list.json').map((res: any) => res).catch(error => this.handleError(error));
+  }
+  getMissionData(id): Observable<any> {
+    return this.http.get('/assets/mission/' + id + '.json').map((res: any) => res).catch(error => this.handleError(error));
+  }
 }

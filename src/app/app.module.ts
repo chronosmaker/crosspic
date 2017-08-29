@@ -10,7 +10,10 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {DrawerComponent} from './components/drawer/drawer.component';
 import {HomeComponent} from './pages/home/home.component';
 import {SystemService} from "./shared/system.service";
-import { CrosspicComponent } from './pages/crosspic/crosspic.component';
+import {CrosspicComponent} from './pages/crosspic/crosspic.component';
+import {MissionComponent} from './pages/crosspic/mission/mission.component';
+import {PlayComponent} from './pages/crosspic/play/play.component';
+import {EditorComponent} from './pages/crosspic/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { CrosspicComponent } from './pages/crosspic/crosspic.component';
     FooterComponent,
     DrawerComponent,
     HomeComponent,
-    CrosspicComponent
+    CrosspicComponent,
+    MissionComponent,
+    PlayComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
