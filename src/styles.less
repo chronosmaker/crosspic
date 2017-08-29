@@ -1,4 +1,5 @@
 @import "values";
+@import "transition";
 
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -500,6 +501,18 @@ body {
 .fs {
   width: 100%;
   min-height: 100vh;
+}
+
+.block-transition-100ms {
+  .transition(100ms);
+}
+
+.block-transition-300ms {
+  .transition(300ms);
+}
+
+.block-transition-500ms {
+  .transition(500ms);
 }
 
 .page-content {

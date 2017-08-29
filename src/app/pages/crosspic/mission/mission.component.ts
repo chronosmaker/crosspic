@@ -10,6 +10,7 @@ export class MissionComponent implements OnInit, OnDestroy {
 
   unsubscribe: any;
   missionList = [];
+  mouseHover = null;
 
   constructor(private systemService: SystemService) {
   }

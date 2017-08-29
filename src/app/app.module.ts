@@ -14,6 +14,7 @@ import {CrosspicComponent} from './pages/crosspic/crosspic.component';
 import {MissionComponent} from './pages/crosspic/mission/mission.component';
 import {PlayComponent} from './pages/crosspic/play/play.component';
 import {EditorComponent} from './pages/crosspic/editor/editor.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {EditorComponent} from './pages/crosspic/editor/editor.component';
     CrosspicComponent,
     MissionComponent,
     PlayComponent,
-    EditorComponent
+    EditorComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

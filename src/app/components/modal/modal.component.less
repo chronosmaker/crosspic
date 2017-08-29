@@ -1,0 +1,150 @@
+/*******************************
+            Dimmer
+*******************************/
+
+.ui.dimmer {
+  display: none;
+  position: relative;
+  top: 0em !important;
+  left: 0em !important;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  line-height: 1;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  will-change: opacity;
+  z-index: 1000;
+}
+
+/* Dimmer Content */
+.ui.dimmer > .content {
+  width: 100%;
+  height: 100%;
+  display: table;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.ui.dimmer > .content > * {
+  display: table-cell;
+  vertical-align: middle;
+  color: #FFFFFF;
+}
+
+/*******************************
+            States
+*******************************/
+
+.animating.dimmable,
+.dimmed.dimmable {
+  overflow: hidden;
+}
+
+.dimmed.dimmable > .ui.animating.dimmer,
+.dimmed.dimmable > .ui.visible.dimmer,
+.ui.active.dimmer {
+  display: block;
+  opacity: 1;
+}
+
+.ui.disabled.dimmer {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/*--------------
+      Page
+---------------*/
+
+.ui.page.dimmer {
+  position: fixed;
+  -webkit-transform-style: '';
+  transform-style: '';
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+}
+
+body.animating.in.dimmable,
+body.dimmed.dimmable {
+  overflow: hidden;
+}
+
+body.dimmable > .dimmer {
+  position: fixed;
+}
+
+/*******************************
+             Modal
+*******************************/
+
+.ui.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  animation-duration: 500ms;
+  -webkit-transform-origin: 50% 25%;
+  transform-origin: 50% 25%;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  will-change: top, left, margin, transform, opacity;
+}
+
+/*******************************
+            Content
+*******************************/
+
+/*--------------
+     Content
+---------------*/
+
+.ui.modal > .content {
+  display: block;
+  width: 100%;
+}
+
+/*******************************
+             States
+*******************************/
+
+.ui.loading.modal {
+  display: block;
+  visibility: hidden;
+  z-index: -1;
+}
+
+.ui.active.modal {
+  display: block;
+}
+
+/* Scrolling Content */
+.ui.modal .scrolling.content {
+  max-height: calc(70vh);
+  overflow: auto;
+}
+ p {
+   color: #fff;
+ }
