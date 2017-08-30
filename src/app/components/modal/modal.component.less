@@ -5,8 +5,8 @@
 .ui.dimmer {
   display: none;
   position: relative;
-  top: 0em !important;
-  left: 0em !important;
+  top: 0 !important;
+  left: 0 !important;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -28,51 +28,12 @@
   z-index: 1000;
 }
 
-/* Dimmer Content */
-.ui.dimmer > .content {
-  width: 100%;
-  height: 100%;
-  display: table;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-.ui.dimmer > .content > * {
-  display: table-cell;
-  vertical-align: middle;
-  color: #FFFFFF;
-}
-
-/*******************************
-            States
-*******************************/
-
-.animating.dimmable,
-.dimmed.dimmable {
-  overflow: hidden;
-}
-
-.dimmed.dimmable > .ui.animating.dimmer,
-.dimmed.dimmable > .ui.visible.dimmer,
+.ui.animating.dimmer,
+.ui.visible.dimmer,
 .ui.active.dimmer {
   display: block;
   opacity: 1;
 }
-
-.ui.disabled.dimmer {
-  width: 0 !important;
-  height: 0 !important;
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/*--------------
-      Page
----------------*/
 
 .ui.page.dimmer {
   position: fixed;
@@ -82,15 +43,6 @@
   perspective: 2000px;
   -webkit-transform-origin: center center;
   transform-origin: center center;
-}
-
-body.animating.in.dimmable,
-body.dimmed.dimmable {
-  overflow: hidden;
-}
-
-body.dimmable > .dimmer {
-  position: fixed;
 }
 
 /*******************************
@@ -112,39 +64,3 @@ body.dimmable > .dimmer {
   user-select: text;
   will-change: top, left, margin, transform, opacity;
 }
-
-/*******************************
-            Content
-*******************************/
-
-/*--------------
-     Content
----------------*/
-
-.ui.modal > .content {
-  display: block;
-  width: 100%;
-}
-
-/*******************************
-             States
-*******************************/
-
-.ui.loading.modal {
-  display: block;
-  visibility: hidden;
-  z-index: -1;
-}
-
-.ui.active.modal {
-  display: block;
-}
-
-/* Scrolling Content */
-.ui.modal .scrolling.content {
-  max-height: calc(70vh);
-  overflow: auto;
-}
- p {
-   color: #fff;
- }
