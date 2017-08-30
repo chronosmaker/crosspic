@@ -20,20 +20,22 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe.unsubscribe();
+    if (this.unsubscribe) {
+      this.unsubscribe.unsubscribe();
+    }
   }
 
-  open() {
+  open(callback) {
     this.show = true;
-    this.change();
+    this.change(callback);
   }
 
-  close() {
+  close(callback) {
     this.show = false;
-    this.change();
+    this.change(callback);
   }
 
-  change() {
+  change(callback) {
     if (this.unsubscribe) {
       this.unsubscribe.unsubscribe();
     }
@@ -41,6 +43,9 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.observable = Observable.timer(1000);
     this.unsubscribe = this.observable.subscribe(() => {
       this.active = false;
+      if (callback) {
+        callback();
+      }
     });
   }
 

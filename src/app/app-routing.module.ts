@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'crosspic', component: CrosspicComponent, children: [
     {path: '', component: MissionComponent},
-    {path: 'play/:id', component: PlayComponent},
+    {path: 'play/:id/:type', component: PlayComponent},
     {path: 'editor', component: EditorComponent}]
   },
   {path: '**', component: HomeComponent}

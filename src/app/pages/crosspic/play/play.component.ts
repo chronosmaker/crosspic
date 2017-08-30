@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SystemService} from "../../../shared/system.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-play',
@@ -12,6 +13,7 @@ export class PlayComponent implements OnInit, OnDestroy {
   hintData = {row: [], col: []};
   hoverCount = {row: null, col: null};
   lifeCount = [];
+  missionType = '';
   missionData = {
     id: null,
     title: null,
@@ -19,17 +21,17 @@ export class PlayComponent implements OnInit, OnDestroy {
       size: null,
       row: null,
       col: null,
-      life: null,
-      hard: null
+      life: null
     },
     data: []
   };
 
-  constructor(private systemService: SystemService) {
+  constructor(private systemService: SystemService, private routeInfo: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.unsubscribe = this.systemService.getMissionData('0001').subscribe(res => {
+    this.missionType = this.routeInfo.snapshot.params['type'];
+    this.unsubscribe = this.systemService.getMissionData(this.routeInfo.snapshot.params['id']).subscribe(res => {
       this.missionData = res;
       this.hintData = this.initHintData(this.missionData);
       this.lifeCount = this.initLife(this.missionData);
@@ -52,7 +54,7 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   initLife(missionData) {
     let lifeCount = [];
-    if (!missionData.option.hard) {
+    if (!this.missionType) {
       for (let i = 1; i <= missionData.option.life; i++) {
         lifeCount.push(true);
       }
@@ -105,7 +107,7 @@ export class PlayComponent implements OnInit, OnDestroy {
         missionData.data[i][j].status = null;
       }
     }
-    if (!missionData.option.hard) {
+    if (!this.missionType) {
       missionData.option.life = this.lifeCount.length;
       this.lifeCount = this.initLife(missionData);
     }
@@ -130,7 +132,7 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   changeStatus(td, e) {
-    if (this.missionData.option.hard) {
+    if (this.missionType) {
       td.status = e.button;
     } else {
       if (e.button === 0 && !td.fill && td.status !== 4) {

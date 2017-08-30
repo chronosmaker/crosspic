@@ -5,8 +5,8 @@
       <span class="mission-list-size">{{list.size}}</span>
     </div>
     <div class="mdl-card__supporting-text"><i class="material-icons">extension</i>{{list.title}}</div>
-    <div class="mdl-card__actions mdl-card--border">
-      <a class="mdl-button mdl-js-button mdl-button--primary" (click)="modal.open()">Start</a>
+    <div class="mdl-card__actions mdl-card--border cf">
+      <a class="mdl-button mdl-js-button mdl-button--primary" (click)="openModal(modal,list)">Start</a>
     </div>
     <div class="mdl-card__menu">
       <div class="mdl-card__supporting-text"><i class="material-icons">local_offer</i>{{list.id}}</div>
@@ -14,14 +14,26 @@
   </div>
 </div>
 <app-modal #modal>
-  <div class="modal-content">
+  <div class="modal-content" style="width:1000px;min-height:270px;margin:-135px 0 0 -500px">
     <div class="header">
+      <h3><i class="material-icons">blur_on</i>{{modalList?.title}}</h3>
+      <button class="mdl-button mdl-js-button mdl-button--icon" (click)="modal.close()"><i class="material-icons">close</i></button>
     </div>
     <div class="content">
-      <p>Your inbox is getting full, would you like us to enable automatic ar</p>
+      <table>
+        <tr>
+          <td style="width:100px">普通模式：</td>
+          <td>此模式下系统会自动判断点击是否正确，如果正确则填入，如果错误则失去一条生命；每行或每列填写完成后系统会自动补充当前行或列其余部分。</td>
+        </tr>
+        <tr>
+          <td style="width:100px">进阶模式：</td>
+          <td>此模式下系统不会自动判断点击是否正确，玩家需要自己进行所有推断，直至找到答案。</td>
+        </tr>
+      </table>
     </div>
     <div class="actions">
-      <button (click)="modal.close()">bbb</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [routerLink]="['./play',modalList?.id,'']">普通模式</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" [routerLink]="['./play',modalList?.id,'1']">进阶模式</button>
     </div>
   </div>
 </app-modal>

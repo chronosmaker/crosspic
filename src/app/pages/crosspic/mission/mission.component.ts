@@ -11,18 +11,23 @@ export class MissionComponent implements OnInit, OnDestroy {
   unsubscribe: any;
   missionList = [];
   mouseHover = null;
+  modalList: any;
 
   constructor(private systemService: SystemService) {
   }
 
   ngOnInit() {
     this.unsubscribe = this.systemService.getMissionList().subscribe(res => {
-      console.log(res)
       this.missionList = res;
     });
   }
 
   ngOnDestroy() {
     this.unsubscribe.unsubscribe();
+  }
+
+  openModal(modal, list) {
+    this.modalList = list;
+    modal.open();
   }
 }

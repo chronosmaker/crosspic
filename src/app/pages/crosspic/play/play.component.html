@@ -34,7 +34,7 @@
           <tr *ngFor="let tr of missionData.data; let row = index;">
             <td class="block-transition-100ms" *ngFor="let td of tr; let col = index;" [class.block-hover]="hoverCount.row===row||hoverCount.col===col">
               <div class="data-block block-transition-300ms" [style.width.px]="missionData.option.size" [style.height.px]="missionData.option.size"
-                   [style.background-color]="td.status === 0 ? !missionData.option.hard ? td.color : 'black' : 'transparent'"
+                   [style.background-color]="td.status === 0 ? !missionType ? td.color : 'black' : 'transparent'"
                    (mousedown)="changeStatus(td,$event)" (mouseenter)="mouseHover(true,row,col)" (mouseleave)="mouseHover(false)">
                 <i class="material-icons" [style.line-height.px]="missionData.option.size" [class.error]="td.status === 4 ? 'red' : ''"
                    [style.font-size.px]="missionData.option.size/2" [hidden]="td.status !== 2 && td.status !== 4">clear</i>

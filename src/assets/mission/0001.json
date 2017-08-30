@@ -5,8 +5,7 @@
     "size": 50,
     "row": 5,
     "col": 5,
-    "life": 5,
-    "hard": false
+    "life": 5
   },
   "data": [
     [
