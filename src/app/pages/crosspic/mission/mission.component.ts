@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SystemService} from "../../../shared/system.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-mission',
@@ -13,7 +14,7 @@ export class MissionComponent implements OnInit, OnDestroy {
   mouseHover = null;
   modalList: any;
 
-  constructor(private systemService: SystemService) {
+  constructor(private systemService: SystemService, private router: Router, private routeInfo: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -29,5 +30,11 @@ export class MissionComponent implements OnInit, OnDestroy {
   openModal(modal, list) {
     this.modalList = list;
     modal.open();
+  }
+
+  modalAction(modal, queryParams) {
+    modal.close(() => {
+      this.router.navigate(['./play'], {queryParams: queryParams, relativeTo: this.routeInfo});
+    });
   }
 }

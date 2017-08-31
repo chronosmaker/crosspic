@@ -1,4 +1,5 @@
 <div class="mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__supporting-text"><i class="material-icons">local_offer</i>{{missionData.id + ' - ' +missionData.title}}</div>
   <table class="mission-data-wrap">
     <tr>
       <td>
@@ -13,7 +14,8 @@
       </td>
       <td>
         <ul class="hint-col-wrap cf">
-          <li class="block-transition-100ms" *ngFor="let col of hintData.col; let _col = index;" [class.block-hover]="hoverCount.col===_col">
+          <li class="block-transition-100ms" *ngFor="let col of hintData.col; let _col = index;"
+              [class.block-hover]="hoverCount.col===_col">
             <div class="hint-block" *ngFor="let hint of col" [style.width.px]="missionData.option.size">{{hint}}</div>
           </li>
         </ul>
@@ -22,7 +24,8 @@
     <tr>
       <td>
         <ul class="hint-row-wrap">
-          <li class="cf block-transition-100ms" *ngFor="let row of hintData.row; let _row = index;" [class.block-hover]="hoverCount.row===_row">
+          <li class="cf block-transition-100ms" *ngFor="let row of hintData.row; let _row = index;"
+              [class.block-hover]="hoverCount.row===_row">
             <div class="hint-block" *ngFor="let hint of row" [style.height.px]="missionData.option.size"
                  [style.line-height.px]="missionData.option.size">{{hint}}
             </div>
@@ -32,10 +35,12 @@
       <td>
         <table class="data-block-wrap">
           <tr *ngFor="let tr of missionData.data; let row = index;">
-            <td class="block-transition-100ms" *ngFor="let td of tr; let col = index;" [class.block-hover]="hoverCount.row===row||hoverCount.col===col">
-              <div class="data-block block-transition-300ms" [style.width.px]="missionData.option.size" [style.height.px]="missionData.option.size"
-                   [style.background-color]="td.status === 0 ? !missionType ? td.color : 'black' : 'transparent'"
-                   (mousedown)="changeStatus(td,$event)" (mouseenter)="mouseHover(true,row,col)" (mouseleave)="mouseHover(false)">
+            <td class="block-transition-100ms" *ngFor="let td of tr; let col = index;"
+                [class.block-hover]="hoverCount.row===row||hoverCount.col===col">
+              <div class="data-block block-transition-300ms" [style.width.px]="missionData.option.size"
+                   [style.height.px]="missionData.option.size"
+                   [style.background-color]="td.status === 0 ? missionType === '0' ? td.color : 'black' : 'transparent'"
+                   (mousedown)="changeStatus(td,$event,modal)" (mouseenter)="mouseHover(true,row,col)" (mouseleave)="mouseHover(false)">
                 <i class="material-icons" [style.line-height.px]="missionData.option.size" [class.error]="td.status === 4 ? 'red' : ''"
                    [style.font-size.px]="missionData.option.size/2" [hidden]="td.status !== 2 && td.status !== 4">clear</i>
               </div>
@@ -46,11 +51,26 @@
     </tr>
   </table>
   <div class="mdl-card__actions mdl-card--border cf">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="resetStatus(missionData)">reset</a>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" [routerLink]="['../']">back</button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" (click)="resetStatus(missionData)">clear</button>
     <ul class="life-count cf" *ngIf="lifeCount.length !== 0">
       <li *ngFor="let life of lifeCount"><i class="material-icons">{{life ? 'favorite' : 'favorite_border'}}</i></li>
     </ul>
   </div>
 </div>
-
-
+<app-modal #modal>
+  <div class="modal-content">
+    <div class="header">
+      <h3><i class="material-icons">blur_on</i>{{missionData.option.life ? 'You Win!!!' : 'Game Over...'}}</h3>
+    </div>
+    <div class="content"></div>
+    <div class="actions">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="modalAction(modal,0)">
+        back
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" (click)="modalAction(modal,1)">
+        retry
+      </button>
+    </div>
+  </div>
+</app-modal>

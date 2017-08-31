@@ -9,11 +9,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CrosspicComponent implements OnInit {
 
-  constructor(private systemService: SystemService, private router: Router, private route: ActivatedRoute) {
+  constructor(private systemService: SystemService, private router: Router, private routeInfo: ActivatedRoute) {
     this.systemService.headerBtns.next(Object.assign([], [{
-      text: 'mission', callback: () => this.router.navigate(['./'], {relativeTo: route})
+      text: 'mission', callback: () => this.router.navigate(['./'], {relativeTo: routeInfo})
     }, {
-      text: 'editor', callback: () => this.router.navigate(['./editor'], {relativeTo: route})
+      text: 'editor', callback: () => this.router.navigate(['./editor'], {relativeTo: routeInfo})
     }]));
   }
 

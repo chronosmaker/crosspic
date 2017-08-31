@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SystemService} from "../../../shared/system.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-play',
@@ -13,7 +13,7 @@ export class PlayComponent implements OnInit, OnDestroy {
   hintData = {row: [], col: []};
   hoverCount = {row: null, col: null};
   lifeCount = [];
-  missionType = '';
+  missionType = '0';
   missionData = {
     id: null,
     title: null,
@@ -26,12 +26,12 @@ export class PlayComponent implements OnInit, OnDestroy {
     data: []
   };
 
-  constructor(private systemService: SystemService, private routeInfo: ActivatedRoute) {
+  constructor(private systemService: SystemService, private routeInfo: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
-    this.missionType = this.routeInfo.snapshot.params['type'];
-    this.unsubscribe = this.systemService.getMissionData(this.routeInfo.snapshot.params['id']).subscribe(res => {
+    this.missionType = this.routeInfo.snapshot.queryParams['type'];
+    this.unsubscribe = this.systemService.getMissionData(this.routeInfo.snapshot.queryParams['id']).subscribe(res => {
       this.missionData = res;
       this.hintData = this.initHintData(this.missionData);
       this.lifeCount = this.initLife(this.missionData);
@@ -54,7 +54,7 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   initLife(missionData) {
     let lifeCount = [];
-    if (!this.missionType) {
+    if (this.missionType === '0') {
       for (let i = 1; i <= missionData.option.life; i++) {
         lifeCount.push(true);
       }
@@ -107,7 +107,7 @@ export class PlayComponent implements OnInit, OnDestroy {
         missionData.data[i][j].status = null;
       }
     }
-    if (!this.missionType) {
+    if (this.missionType === '0') {
       missionData.option.life = this.lifeCount.length;
       this.lifeCount = this.initLife(missionData);
     }
@@ -115,15 +115,60 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   checkStatus(missionData) {
     missionData.option.win = true;
-    for (let i = 0; i < missionData.option.row; i++) {
-      for (let j = 0; j < missionData.option.col; j++) {
-        if (missionData.data[i][j].fill) {
-          if (missionData.data[i][j].status !== 0) {
-            missionData.option.win = false;
+    if (this.missionType === '1') {
+      for (let i = 0; i < missionData.option.row; i++) {
+        for (let j = 0; j < missionData.option.col; j++) {
+          if (missionData.data[i][j].fill) {
+            if (missionData.data[i][j].status !== 0) {
+              missionData.option.win = false;
+            }
+          } else {
+            if (missionData.data[i][j].status === 0) {
+              missionData.option.win = false;
+            }
           }
-        } else {
-          if (missionData.data[i][j].status === 0) {
-            missionData.option.win = false;
+        }
+      }
+    } else {
+      for (let i = 0; i < missionData.option.row; i++) {
+        let temp = true;
+        for (let j = 0; j < missionData.option.col; j++) {
+          if (missionData.data[i][j].fill) {
+            if (missionData.data[i][j].status !== 0) {
+              missionData.option.win = false;
+            }
+            if (missionData.data[i][j].status !== 0) {
+              temp = false;
+            }
+          } else {
+            if (missionData.data[i][j].status === 0) {
+              missionData.option.win = false;
+            }
+          }
+        }
+        if (temp) {
+          for (let j = 0; j < missionData.option.col; j++) {
+            if (!missionData.data[i][j].fill && missionData.data[i][j].status !== 4) {
+              missionData.data[i][j].status = 2;
+            }
+          }
+        }
+      }
+      for (let i = 0; i < missionData.option.col; i++) {
+        let temp = true;
+        for (let j = 0; j < missionData.option.row; j++) {
+          if (missionData.data[j][i].fill) {
+            if (missionData.data[i][j].status !== 0) {
+              temp = false;
+            }
+          }
+        }
+        console.log(temp)
+        if (temp) {
+          for (let j = 0; j < missionData.option.col; j++) {
+            if (!missionData.data[j][i].fill && missionData.data[j][i].status !== 4) {
+              missionData.data[j][i].status = 2;
+            }
           }
         }
       }
@@ -131,22 +176,32 @@ export class PlayComponent implements OnInit, OnDestroy {
     return missionData.option.win;
   }
 
-  changeStatus(td, e) {
-    if (this.missionType) {
+  changeStatus(td, e, modal) {
+    if (this.missionType === '1') {
       td.status = e.button;
     } else {
       if (e.button === 0 && !td.fill && td.status !== 4) {
         td.status = 4;
         this.lifeCount[--this.missionData.option.life] = false;
         if (this.missionData.option.life === 0) {
-          alert('Game Over...');
+          modal.open();
         }
       } else if (td.status !== 0 && td.status !== 4) {
         td.status = e.button;
       }
     }
     if (this.missionData.option.life > 0 && this.checkStatus(this.missionData)) {
-      alert('Win!!!');
+      modal.open();
     }
+  }
+
+  modalAction(modal, flag) {
+    modal.close(() => {
+      if (flag) {
+        this.resetStatus(this.missionData);
+      } else {
+        this.router.navigate(['../'], {relativeTo: this.routeInfo});
+      }
+    });
   }
 }

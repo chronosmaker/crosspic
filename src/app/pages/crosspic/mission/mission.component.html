@@ -6,7 +6,7 @@
     </div>
     <div class="mdl-card__supporting-text"><i class="material-icons">extension</i>{{list.title}}</div>
     <div class="mdl-card__actions mdl-card--border cf">
-      <a class="mdl-button mdl-js-button mdl-button--primary" (click)="openModal(modal,list)">Start</a>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" (click)="openModal(modal,list)">Start</button>
     </div>
     <div class="mdl-card__menu">
       <div class="mdl-card__supporting-text"><i class="material-icons">local_offer</i>{{list.id}}</div>
@@ -14,7 +14,7 @@
   </div>
 </div>
 <app-modal #modal>
-  <div class="modal-content" style="width:1000px;min-height:270px;margin:-135px 0 0 -500px">
+  <div class="modal-content">
     <div class="header">
       <h3><i class="material-icons">blur_on</i>{{modalList?.title}}</h3>
       <button class="mdl-button mdl-js-button mdl-button--icon" (click)="modal.close()"><i class="material-icons">close</i></button>
@@ -32,8 +32,8 @@
       </table>
     </div>
     <div class="actions">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [routerLink]="['./play',modalList?.id,'']">普通模式</button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" [routerLink]="['./play',modalList?.id,'1']">进阶模式</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="modalAction(modal,{id: modalList?.id, type: '0'})">普通模式</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" (click)="modalAction(modal,{id: modalList?.id, type: '1'})">进阶模式</button>
     </div>
   </div>
 </app-modal>

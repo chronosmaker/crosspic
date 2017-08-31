@@ -40,7 +40,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       this.unsubscribe.unsubscribe();
     }
     this.active = true;
-    this.observable = Observable.timer(1000);
+    this.observable = Observable.timer(500);
     this.unsubscribe = this.observable.subscribe(() => {
       this.active = false;
       if (callback) {
