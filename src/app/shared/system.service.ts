@@ -25,9 +25,9 @@ export class SystemService {
   }
 
   getMissionList(): Observable<any> {
-    return this.http.get('/assets/mission/list.json').map((res: any) => res).catch(error => this.handleError(error));
+    return this.http.get('assets/mission/list.json').map((res: any) => res).catch(error => this.handleError(error));
   }
   getMissionData(id): Observable<any> {
-    return this.http.get('/assets/mission/' + id + '.json').map((res: any) => res).catch(error => this.handleError(error));
+    return this.http.get('assets/mission/' + id + '.json').map((res: any) => res).catch(error => this.handleError(error));
   }
 }

@@ -15,7 +15,9 @@
       <td>
         <ul class="hint-col-wrap cf">
           <li class="block-transition-100ms" *ngFor="let col of hintData.col; let _col = index;"
-              [class.block-hover]="hoverCount.col===_col">
+              [class.block-hover]="hoverCount.col===_col"
+              [style.height.px]="((missionData.option.col/2*10 - missionData.option.col/2*10%10)/10+1)*28"
+              [style.border-right-width.px]="(_col+1)%5 === 0 ? '2':'1'">
             <div class="hint-block" *ngFor="let hint of col" [style.width.px]="missionData.option.size">{{hint}}</div>
           </li>
         </ul>
@@ -25,7 +27,9 @@
       <td>
         <ul class="hint-row-wrap">
           <li class="cf block-transition-100ms" *ngFor="let row of hintData.row; let _row = index;"
-              [class.block-hover]="hoverCount.row===_row">
+              [class.block-hover]="hoverCount.row===_row"
+              [style.width.px]="((missionData.option.row/2*10 - missionData.option.row/2*10%10)/10+1)*28"
+              [style.border-bottom-width.px]="(_row+1)%5 === 0 ? '2':'1'">
             <div class="hint-block" *ngFor="let hint of row" [style.height.px]="missionData.option.size"
                  [style.line-height.px]="missionData.option.size">{{hint}}
             </div>
@@ -36,7 +40,9 @@
         <table class="data-block-wrap">
           <tr *ngFor="let tr of missionData.data; let row = index;">
             <td class="block-transition-100ms" *ngFor="let td of tr; let col = index;"
-                [class.block-hover]="hoverCount.row===row||hoverCount.col===col">
+                [class.block-hover]="hoverCount.row===row||hoverCount.col===col"
+                [style.border-right-width.px]="(col+1)%5 === 0 && (col+1) !== tr.length ? '2':'1'"
+                [style.border-bottom-width.px]="(row+1)%5 === 0 && (row+1) !== missionData.data.length ? '2':'1'">
               <div class="data-block block-transition-300ms" [style.width.px]="missionData.option.size"
                    [style.height.px]="missionData.option.size"
                    [style.background-color]="td.status === 0 ? missionType === '0' ? td.color : 'black' : 'transparent'"

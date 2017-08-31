@@ -136,13 +136,7 @@ export class PlayComponent implements OnInit, OnDestroy {
           if (missionData.data[i][j].fill) {
             if (missionData.data[i][j].status !== 0) {
               missionData.option.win = false;
-            }
-            if (missionData.data[i][j].status !== 0) {
               temp = false;
-            }
-          } else {
-            if (missionData.data[i][j].status === 0) {
-              missionData.option.win = false;
             }
           }
         }
@@ -158,12 +152,11 @@ export class PlayComponent implements OnInit, OnDestroy {
         let temp = true;
         for (let j = 0; j < missionData.option.row; j++) {
           if (missionData.data[j][i].fill) {
-            if (missionData.data[i][j].status !== 0) {
+            if (missionData.data[j][i].status !== 0) {
               temp = false;
             }
           }
         }
-        console.log(temp)
         if (temp) {
           for (let j = 0; j < missionData.option.col; j++) {
             if (!missionData.data[j][i].fill && missionData.data[j][i].status !== 4) {

@@ -6,7 +6,12 @@
   },
   {
     "id": "0002",
-    "title": "dragon2",
+    "title": "shield",
+    "size": "5x5"
+  },
+  {
+    "id": "0003",
+    "title": "eagle",
     "size": "10x10"
   }
 ]
