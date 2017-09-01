@@ -2,7 +2,6 @@
   "id": "0002",
   "title": "shield",
   "option": {
-    "size": 50,
     "row": 5,
     "col": 5,
     "life": 5

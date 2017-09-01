@@ -2,7 +2,6 @@
   "id": "0003",
   "title": "eagle",
   "option": {
-    "size": 25,
     "row": 10,
     "col": 10,
     "life": 5
