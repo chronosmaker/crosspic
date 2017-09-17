@@ -1,0 +1,7 @@
+<div class="ui dimmer page transition"
+     [ngClass]="{'visible active': active || show, 'animating fade': active, 'in': active && show, 'out': active && !show}">
+  <div class="ui modal transition"
+       [ngClass]="{'visible active': active || show, 'animating scale': active, 'in': active && show, 'out': active && !show}">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<span class="mdl-layout-title">{{site}}</span>
+<nav class="mdl-navigation">
+  <a class="mdl-navigation__link" *ngFor="let menu of menus" [routerLink]="[menu.url]" (click)="activate.emit(menu)">{{menu.title}}</a>
+</nav>
+<img class="drawer-icon" src="assets/images/chronos.png"/>

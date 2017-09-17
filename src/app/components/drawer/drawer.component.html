@@ -1,6 +1,0 @@
-<span class="mdl-layout-title">{{drawerInfo.site}}</span>
-<nav class="mdl-navigation">
-  <a class="mdl-navigation__link" *ngFor="let menu of getKeys(drawerInfo.menu)"
-     [routerLink]="[drawerInfo.menu[menu].url]">{{drawerInfo.menu[menu].title}}</a>
-</nav>
-<img class="drawer-icon" src="assets/images/chronos.png"/>

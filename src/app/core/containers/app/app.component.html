@@ -1,0 +1,16 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <app-header [menu]="activeMenu$ | async"></app-header>
+  </header>
+  <div class="mdl-layout__drawer">
+    <app-drawer [site]="site$ | async" [menus]="menus$ | async" (activate)="activeMenu($event)"></app-drawer>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content cf">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <footer class="mdl-mini-footer">
+    <app-footer [site]="site$ | async"></app-footer>
+  </footer>
+</div>
