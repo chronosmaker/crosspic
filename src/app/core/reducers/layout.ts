@@ -7,16 +7,17 @@ export interface State {
 }
 
 export interface Menu {
+  id: string;
   title: string;
   url: string;
 }
 
 const initialState: State = {
   site: 'chronos.red',
-  activeMenu: {title: 'home', url: '/home'},
+  activeMenu: {id: 'home', title: 'home', url: '/home'},
   menus: [
-    {title: 'home', url: '/home'},
-    {title: '{crosspic}', url: '/crosspic'}
+    {id: 'home', title: 'home', url: '/home'},
+    {id: 'crosspic', title: '{crosspic}', url: '/crosspic'}
   ]
 };
 
@@ -24,7 +25,7 @@ export function reducer(state = initialState, action: layout.Actions): State {
   switch (action.type) {
     case layout.SELECT_MODULE:
       return Object.assign({}, state, {
-        activeMenu: action.payload,
+        activeMenu: state.menus.find(val => val.id === action.payload),
       });
     default:
       return state;

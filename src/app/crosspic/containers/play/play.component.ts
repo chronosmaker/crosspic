@@ -1,6 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {CrosspicService} from "../../services/crosspic.service";
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs/Observable";
+import * as play from '../../actions/play';
+import * as fromPlay from '../../reducers/play';
+import * as fromRoot from '../../reducers';
 
 @Component({
   selector: 'app-play',
@@ -14,24 +18,18 @@ export class PlayComponent implements OnInit, OnDestroy {
   hoverCount = {row: null, col: null};
   lifeCount = [];
   missionType = '0';
-  missionData = {
-    id: null,
-    title: null,
-    option: {
-      size: null,
-      row: null,
-      col: null,
-      life: null
-    },
-    data: []
-  };
+  missionData: fromPlay.State = fromPlay.initialState;
 
-  constructor(private crosspicService: CrosspicService, private routeInfo: ActivatedRoute, private router: Router) {
+  mission$: Observable<fromPlay.State>;
+
+  constructor(private routeInfo: ActivatedRoute, private router: Router, private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
     this.missionType = this.routeInfo.snapshot.queryParams['type'];
-    this.unsubscribe = this.crosspicService.getMissionData(this.routeInfo.snapshot.queryParams['id']).subscribe(res => {
+    this.store.dispatch(new play.GetMission(this.routeInfo.snapshot.queryParams['id']));
+    this.mission$ = this.store.select(fromRoot.getMissionState);
+    this.unsubscribe = this.mission$.subscribe(res => {
       this.missionData = res;
       this.hintData = this.initHintData(this.missionData);
       this.lifeCount = this.initLife(this.missionData);

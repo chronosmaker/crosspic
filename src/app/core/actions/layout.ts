@@ -6,7 +6,7 @@ export const SELECT_MODULE = '[Layout] Select Module';
 export class SelectModule implements Action {
   readonly type = SELECT_MODULE;
 
-  constructor(public payload: Menu) {
+  constructor(public payload: string) {
   }
 }
 

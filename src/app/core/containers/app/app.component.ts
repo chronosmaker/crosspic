@@ -1,4 +1,6 @@
+import 'rxjs/add/operator/filter';
 import {Component} from '@angular/core';
+import {NavigationEnd, Router} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {Store} from "@ngrx/store";
 import * as layout from '../../actions/layout';
@@ -16,13 +18,12 @@ export class AppComponent {
   activeMenu$: Observable<formLayout.Menu>;
   menus$: Observable<Array<formLayout.Menu>>;
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromRoot.State>, private router: Router) {
     this.site$ = this.store.select(fromRoot.getSite);
     this.activeMenu$ = this.store.select(fromRoot.getActiveMenus);
     this.menus$ = this.store.select(fromRoot.getMenus);
-  }
-
-  activeMenu(menu: formLayout.Menu) {
-    this.store.dispatch(new layout.SelectModule(menu));
+    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event) => {
+      this.store.dispatch(new layout.SelectModule(event['urlAfterRedirects'].split('/')[1]));
+    });
   }
 }

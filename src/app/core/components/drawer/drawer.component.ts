@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import * as layout from '../../reducers/layout';
 
 @Component({
@@ -9,5 +9,4 @@ import * as layout from '../../reducers/layout';
 export class DrawerComponent {
   @Input() site: string;
   @Input() menus: layout.Menu[];
-  @Output() activate = new EventEmitter<layout.Menu>();
 }

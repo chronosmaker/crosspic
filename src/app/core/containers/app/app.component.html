@@ -3,7 +3,7 @@
     <app-header [menu]="activeMenu$ | async"></app-header>
   </header>
   <div class="mdl-layout__drawer">
-    <app-drawer [site]="site$ | async" [menus]="menus$ | async" (activate)="activeMenu($event)"></app-drawer>
+    <app-drawer [site]="site$ | async" [menus]="menus$ | async"></app-drawer>
   </div>
   <main class="mdl-layout__content">
     <div class="page-content cf">

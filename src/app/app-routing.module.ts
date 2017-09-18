@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 const routes: Routes = [
   {path: '', redirectTo: '/crosspic', pathMatch: 'full'},
   {path: 'crosspic', loadChildren: './crosspic/crosspic.module#CrosspicModule'},
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: '/crosspic'}
 ];
 
 @NgModule({
